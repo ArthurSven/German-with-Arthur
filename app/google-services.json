@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "681890466720",
+    "firebase_url": "https://learn-german-with-tuuri-default-rtdb.firebaseio.com",
+    "project_id": "learn-german-with-tuuri",
+    "storage_bucket": "learn-german-with-tuuri.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:681890466720:android:1ba3f6d2db3b54b12032c5",
+        "android_client_info": {
+          "package_name": "com.company.DevApps"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "681890466720-u4s1b1ge7e3i47601jp5slcgft5aatip.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhbcVjhdhafx-tOrUhrKy0NTPFO7Mfdn4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "681890466720-u4s1b1ge7e3i47601jp5slcgft5aatip.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:681890466720:android:272616d22dd755a92032c5",
+        "android_client_info": {
+          "package_name": "com.devapps.germanwitharthur"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "681890466720-u4s1b1ge7e3i47601jp5slcgft5aatip.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhbcVjhdhafx-tOrUhrKy0NTPFO7Mfdn4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "681890466720-u4s1b1ge7e3i47601jp5slcgft5aatip.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:681890466720:android:ffc9c340d62fa3672032c5",
+        "android_client_info": {
+          "package_name": "com.devapps.learngermawithtuuri"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "681890466720-u4s1b1ge7e3i47601jp5slcgft5aatip.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhbcVjhdhafx-tOrUhrKy0NTPFO7Mfdn4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "681890466720-u4s1b1ge7e3i47601jp5slcgft5aatip.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">German with Arthur</string>
+    <string name="german_with_arthur">German with \n Arthur</string>
+    <string name="home">Home</string>
+    <string name="account">Account</string>
+    <string name="translator">Translator</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="improve_your_german_today_with_arthur">-Improve your German today with Arthur</string>
+    <string name="what_we_offer">What we offer...</string>
+    <string name="grammar">Grammar</string>
+    <string name="phrases">Phrases</string>
+    <string name="quiz">Quiz</string>
+    <string name="trivia">Trivia</string>
+    <string name="sign_in_or_login">Sign-in Or Login</string>
+    <string name="login">Login</string>
+    <string name="username">Username</string>
+    <string name="password">password</string>
+    <string name="email">email</string>
+    <string name="signup">Signup</string>
+    <string name="english_german_translator">English - German Translator</string>
+    <string name="translate_here">Translate here...</string>
+    <string name="translate">Translate</string>
+</resources>

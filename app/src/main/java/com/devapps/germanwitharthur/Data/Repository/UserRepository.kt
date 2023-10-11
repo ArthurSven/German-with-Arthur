@@ -1,9 +1,14 @@
 package com.devapps.germanwitharthur.Data.Repository
 
+import android.annotation.SuppressLint
+import android.content.ContentValues.TAG
+import android.util.Log
 import com.devapps.germanwitharthur.Data.Model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -13,36 +18,50 @@ import kotlinx.coroutines.withContext
 class UserRepository{
 
     private val authManager: FirebaseAuth = FirebaseAuth.getInstance()
+
     private val database: DatabaseReference = FirebaseDatabase.
     getInstance("https://learn-german-with-tuuri-default-rtdb.firebaseio.com")
         .getReference("Users")
 
-    suspend fun userSignUp(username: String, email: String, password: String) {
-        val result = authManager.createUserWithEmailAndPassword(email, password)
-        try {
-            if (result != null) {
-                val user = User(username)
-                database.child(username).setValue(user).await()
-            }
-        } catch (e: Exception) {
-            withContext(Dispatchers.IO) {
+    @SuppressLint("SuspiciousIndentation")
+    suspend fun userSignUp(
+        username: String,
+        email: String,
+        password: String,
+        onComplete: (Boolean, String?) -> Unit) {
+        val signUp = authManager.createUserWithEmailAndPassword(email, password)
+            if (signUp != null) {
+                try {
+                    CoroutineScope(Dispatchers.IO).launch {
+                        val user = User(username)
+                        database.child(username).setValue(user).await()
+                        withContext(Dispatchers.Main) {
+                            onComplete(true, null)
+                        }
+                    }
 
+                } catch (e: Exception) {
+                    CoroutineScope(Dispatchers.IO).launch {
+                        e.message?.let { Log.d(TAG, it) }
+                    }
+                }
             }
+
+
         }
 
-    }
 
-    suspend fun userLogin(email: String, password: String) {
+    suspend fun userLogin(email: String, password: String, onComplete: (Boolean) -> Unit) {
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                 authManager.signInWithEmailAndPassword(email, password)
+                val authResult = authManager.signInWithEmailAndPassword(email, password).await()
                 withContext(Dispatchers.Main) {
-                    return@withContext true
+                    onComplete(authResult !=null)
                 }
             } catch (e: Exception) {
-                withContext(Dispatchers.Main) {
-                    return@withContext false
-                }
+              withContext(Dispatchers.Main) {
+                  onComplete(false)
+              }
             }
         }
     }
@@ -60,6 +79,10 @@ class UserRepository{
                 }
             }
         }
+    }
+
+    suspend fun getUserCurrentID(): String? {
+        return authManager.currentUser!!.displayName
     }
 
 }

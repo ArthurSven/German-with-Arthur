@@ -54,6 +54,15 @@ dependencies {
     //Firebase ML-kit translator
     implementation("com.google.mlkit:translate:17.0.1")
 
+    // Add the dependency for the Realtime Database library
+    implementation("com.google.firebase:firebase-database-ktx")
+
+    // Import the BoM for the Firebase platform
+    implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
+
+    //Firebase firestore
+    implementation("com.google.firebase:firebase-firestore-ktx")
+
     //View model
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
 

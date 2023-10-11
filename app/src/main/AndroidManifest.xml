@@ -25,6 +25,8 @@
         </activity>
         <activity android:name=".Views.MainActivity"
             android:exported="true"/>
+        <activity android:name=".Views.Users.UserHomeActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>

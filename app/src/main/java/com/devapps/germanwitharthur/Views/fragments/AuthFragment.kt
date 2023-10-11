@@ -1,5 +1,7 @@
 package com.devapps.germanwitharthur.Views.fragments
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,9 +16,11 @@ import com.devapps.germanwitharthur.Data.Repository.UserRepository
 import com.devapps.germanwitharthur.R
 import com.devapps.germanwitharthur.ViewModels.UserViewModel
 import com.devapps.germanwitharthur.ViewModels.UserViewModelFactory
+import com.devapps.germanwitharthur.Views.Users.UserHomeActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class AuthFragment : Fragment() {
     override fun onCreateView(
@@ -45,13 +49,26 @@ class AuthFragment : Fragment() {
             val email = emailET.text.toString()
             val password = passwordET.text.toString()
 
-            CoroutineScope(Dispatchers.Main).launch {
-                try {
-                    userViewModel.userLogin(email, password)
-                    Toast.makeText(requireContext(), "Login successful", Toast.LENGTH_SHORT).show()
-                } catch (e:Exception) {
-                    Toast.makeText(requireContext(), e.message, Toast.LENGTH_SHORT).show()
+            if(email.isNotEmpty() && password.isNotEmpty()) {
+
+                CoroutineScope(Dispatchers.Main).launch {
+                    try {
+                        userViewModel.userLogin(email, password) { success, errorMessage ->
+                            if (success) {
+                                    Toast.makeText(requireContext(), "Login successful", Toast.LENGTH_SHORT).show()
+                                    val intent = Intent(requireContext(), UserHomeActivity::class.java)
+                                    startActivity(intent)
+
+                            } else {
+                                Toast.makeText(requireContext(), "Login failed: $errorMessage", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    } catch (e: Exception) {
+                        Toast.makeText(requireContext(), "Login failed: ${e.message}", Toast.LENGTH_SHORT).show()
+                    }
                 }
+            } else {
+                Toast.makeText(requireContext(), "Make sure you have filled all the forms", Toast.LENGTH_SHORT).show()
             }
 
         }
@@ -64,5 +81,6 @@ class AuthFragment : Fragment() {
             transaction.commit()
         }
     }
+
 
 }

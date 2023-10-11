@@ -26,4 +26,7 @@
     <string name="create_account">Create Account</string>
     <string name="already_have_an_account">Already have an account?</string>
     <string name="login_here">Login here</string>
+    <string name="progress">Progress</string>
+    <string name="settings">Settings</string>
+    <string name="logout">Logout</string>
 </resources>

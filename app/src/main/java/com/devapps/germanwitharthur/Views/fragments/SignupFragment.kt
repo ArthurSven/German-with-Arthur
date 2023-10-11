@@ -1,5 +1,6 @@
 package com.devapps.germanwitharthur.Views.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -28,6 +29,7 @@ class SignupFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_signup, container, false)
     }
 
+    @SuppressLint("SuspiciousIndentation")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -48,23 +50,31 @@ class SignupFragment : Fragment() {
             val email = emailEi.text.toString()
             val password = passwordEt.text.toString()
 
-            CoroutineScope(Dispatchers.Main).launch {
-                try {
-                  var success = userViewModel.userSignUp(username, email, password)
+            if(username.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty()) {
+                CoroutineScope(Dispatchers.Main).launch {
+                    try {
+                        userViewModel.userSignUp(username, email, password) { success, errorMessage ->
+                            if (success) {
+                                Toast.makeText(requireContext(), "${username}'s account has been created.",
+                                    Toast.LENGTH_SHORT).show()
+                            } else {
+                                Toast.makeText(requireContext(), "${username}'s account did not create. $errorMessage",
+                                    Toast.LENGTH_SHORT).show()
+                            }
+                        }
 
-                    if (success != null) {
-                        Toast.makeText(requireContext(), "${username}'s account has been created.",
-                            Toast.LENGTH_SHORT).show()
-                    } else {
-                        Toast.makeText(requireContext(), "${username}'s account did not create.",
-                            Toast.LENGTH_SHORT).show()
+
+                    } catch (e: Exception) {
+                        Toast.makeText(requireContext(), "$e occurred while creating $username's account.",
+                            Toast.LENGTH_LONG).show()
                     }
-                } catch (e: Exception) {
-                    Toast.makeText(requireContext(), "$e occurred while creating $username's account.",
-                        Toast.LENGTH_LONG).show()
-                }
 
+                }
+            } else {
+                Toast.makeText(requireContext(), "Make sure you have filled all the forms", Toast.LENGTH_SHORT).show()
             }
+
+
         }
 
         login.setOnClickListener {

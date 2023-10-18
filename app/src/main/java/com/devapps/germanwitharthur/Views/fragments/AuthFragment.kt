@@ -1,8 +1,10 @@
 package com.devapps.germanwitharthur.Views.fragments
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,18 +13,24 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import androidx.lifecycle.ViewModelProvider
-import com.devapps.germanwitharthur.Data.Repository.UserRepository
+import com.devapps.germanwitharthur.Data.Model.FirebaseAuth
 import com.devapps.germanwitharthur.R
-import com.devapps.germanwitharthur.ViewModels.UserViewModel
-import com.devapps.germanwitharthur.ViewModels.UserViewModelFactory
+import com.devapps.germanwitharthur.Views.MainActivity
 import com.devapps.germanwitharthur.Views.Users.UserHomeActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class AuthFragment : Fragment() {
+
+    private lateinit var authManager: FirebaseAuth
+    private lateinit var handler: Handler
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        // Initialize authManager when the fragment is attached to the activity
+        authManager = FirebaseAuth(requireContext())
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,16 +39,20 @@ class AuthFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_auth, container, false)
     }
 
+    @SuppressLint("SuspiciousIndentation")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val userRepository = UserRepository() // Initialize your UserRepository here
-        val viewModelFactory = UserViewModelFactory(userRepository)
-        val userViewModel = ViewModelProvider(this, viewModelFactory)
-            .get(UserViewModel::class.java)
-
         val signup = view.findViewById<TextView>(R.id.signup)
         val login = view.findViewById<Button>(R.id.login)
+
+        signup.setOnClickListener {
+            val signUpFragment = SignupFragment()
+            val transaction = parentFragmentManager.beginTransaction()
+            transaction.replace(R.id.flFragment, signUpFragment)
+            transaction.addToBackStack(null)
+            transaction.commit()
+        }
 
         login.setOnClickListener {
             val emailET = view.findViewById<EditText>(R.id.email)
@@ -50,36 +62,30 @@ class AuthFragment : Fragment() {
             val password = passwordET.text.toString()
 
             if(email.isNotEmpty() && password.isNotEmpty()) {
+                try {
+                    CoroutineScope(Dispatchers.Main).launch {
+                        val login = authManager.loginUser(email, password)
 
-                CoroutineScope(Dispatchers.Main).launch {
-                    try {
-                        userViewModel.userLogin(email, password) { success, errorMessage ->
-                            if (success) {
-                                    Toast.makeText(requireContext(), "Login successful", Toast.LENGTH_SHORT).show()
+                        if (login != null) {
+                            Toast.makeText(requireContext(), "Login successful", Toast.LENGTH_SHORT).show()
+                            handler = Handler()
+                                handler.postDelayed({
                                     val intent = Intent(requireContext(), UserHomeActivity::class.java)
                                     startActivity(intent)
-
-                            } else {
-                                Toast.makeText(requireContext(), "Login failed: $errorMessage", Toast.LENGTH_SHORT).show()
-                            }
+                                    requireActivity().finish()
+                                }, 3000)
                         }
-                    } catch (e: Exception) {
-                        Toast.makeText(requireContext(), "Login failed: ${e.message}", Toast.LENGTH_SHORT).show()
                     }
+                } catch (e: Exception) {
+                    Toast.makeText(requireContext(), e.message, Toast.LENGTH_SHORT).show()
                 }
             } else {
-                Toast.makeText(requireContext(), "Make sure you have filled all the forms", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Please fill all the forms", Toast.LENGTH_SHORT).show()
             }
 
         }
 
-        signup.setOnClickListener {
-            val signupFragment = SignupFragment()
-            val transaction = parentFragmentManager.beginTransaction()
-            transaction.replace(R.id.flFragment, signupFragment)
-            transaction.addToBackStack(null)
-            transaction.commit()
-        }
+
     }
 
 

@@ -23,7 +23,7 @@ class HomeFragment : Fragment() {
 
         // Get the current time
         val calendar = Calendar.getInstance()
-        val hourOfDay = calendar.get(Calendar.HOUR_OF_DAY)
+        val hourOfDay = calendar.get(Calendar.HOUR)
 
         // Determine the greeting based on the time
         val greeting = when {

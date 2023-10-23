@@ -15,7 +15,7 @@
       },
       "oauth_client": [
         {
-          "client_id": "681890466720-u4s1b1ge7e3i47601jp5slcgft5aatip.apps.googleusercontent.com",
+          "client_id": "681890466720-jlffur7hptg7dqrhgfl3n68htlrr140i.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -28,7 +28,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "681890466720-u4s1b1ge7e3i47601jp5slcgft5aatip.apps.googleusercontent.com",
+              "client_id": "681890466720-jdfdthh7uklhk2da1uj5u7dcjl18bahr.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
@@ -44,7 +44,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "681890466720-u4s1b1ge7e3i47601jp5slcgft5aatip.apps.googleusercontent.com",
+          "client_id": "681890466720-rbkk4o1afiq66umc1115b0vnl250ic3q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.devapps.germanwitharthur",
+            "certificate_hash": "3377a9deaa00f6865e0b6d372d7bbb6ec00763de"
+          }
+        },
+        {
+          "client_id": "681890466720-jlffur7hptg7dqrhgfl3n68htlrr140i.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -57,7 +65,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "681890466720-u4s1b1ge7e3i47601jp5slcgft5aatip.apps.googleusercontent.com",
+              "client_id": "681890466720-jdfdthh7uklhk2da1uj5u7dcjl18bahr.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
@@ -73,7 +81,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "681890466720-u4s1b1ge7e3i47601jp5slcgft5aatip.apps.googleusercontent.com",
+          "client_id": "681890466720-p17h4q83c029eohvet8m8lqhjn9b9s0d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.devapps.learngermawithtuuri",
+            "certificate_hash": "3377a9deaa00f6865e0b6d372d7bbb6ec00763de"
+          }
+        },
+        {
+          "client_id": "681890466720-jlffur7hptg7dqrhgfl3n68htlrr140i.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -86,7 +102,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "681890466720-u4s1b1ge7e3i47601jp5slcgft5aatip.apps.googleusercontent.com",
+              "client_id": "681890466720-jdfdthh7uklhk2da1uj5u7dcjl18bahr.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

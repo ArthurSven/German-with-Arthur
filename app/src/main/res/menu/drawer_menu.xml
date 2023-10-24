@@ -5,7 +5,7 @@
     <item android:id="@+id/progress"
         android:title="@string/progress"/>
 <item android:id="@+id/settings"
-    android:title="@string/settings"/>
+    android:title="@string/remainder"/>
     <item android:id="@+id/logout"
         android:title="@string/logout"/>
 </menu>

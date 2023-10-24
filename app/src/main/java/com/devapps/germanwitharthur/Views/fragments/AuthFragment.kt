@@ -1,6 +1,8 @@
 package com.devapps.germanwitharthur.Views.fragments
 
+import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.Application
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -24,11 +26,11 @@ import com.google.android.material.card.MaterialCardView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 
+
 class AuthFragment : Fragment() {
 
     private lateinit var authManager: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
-    private val PREFS_NAME = "UserPrefs"
 
    override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -43,6 +45,7 @@ class AuthFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_auth, container, false)
     }
 
+    @SuppressLint("SuspiciousIndentation")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -59,8 +62,8 @@ class AuthFragment : Fragment() {
         view.findViewById<MaterialCardView>(R.id.google).setOnClickListener {
             signInGoogle()
         }
-
     }
+
 
     private val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
         result ->
@@ -112,4 +115,5 @@ class AuthFragment : Fragment() {
         val intent = Intent(requireContext(), MainActivity::class.java)
         startActivity(intent)
     }
+
 }

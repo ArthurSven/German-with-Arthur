@@ -16,17 +16,20 @@ import com.devapps.germanwitharthur.Views.MainActivity
 import com.devapps.germanwitharthur.Views.Users.fragments.ClientHomeFragment
 import com.devapps.germanwitharthur.Views.Users.fragments.ProgressFragment
 import com.devapps.germanwitharthur.Views.Users.fragments.SettingsFragment
-import com.devapps.germanwitharthur.Views.fragments.HomeFragment
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class UserHomeActivity : AppCompatActivity() {
-    private val authManager = FirebaseAuth.getInstance()
+    private lateinit var auth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_home)
 
         setDrawerItem(ClientHomeFragment())
+
+        auth = Firebase.auth
 
 
         val drawerLayout = findViewById<DrawerLayout>(R.id.drawerLayout)
@@ -76,7 +79,7 @@ class UserHomeActivity : AppCompatActivity() {
 
     private fun signOut() {
 
-        authManager.signOut() // Sign the user out
+        auth.signOut() // Sign the user out
 
     //clear sharedPReferences
         // Clear user-related data from SharedPreferences

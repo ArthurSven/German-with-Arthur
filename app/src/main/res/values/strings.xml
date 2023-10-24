@@ -32,4 +32,8 @@
     <string name="sign_in_with_facebook">Sign in With Facebook</string>
     <string name="or">-OR-</string>
     <string name="web_client_id">681890466720-jlffur7hptg7dqrhgfl3n68htlrr140i.apps.googleusercontent.com</string>
+    <string name="sign_in_with_google">Sign In with Google</string>
+    <string name="remainder">Remainder</string>
+
+
 </resources>
